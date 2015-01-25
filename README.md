@@ -12,6 +12,8 @@ job, and not-so-recent processors provide also large speedups.
 In order to take advantage of this, you may use "-O3 -march=native" options
 of gcc or clang.
 
+# Benchmarks
+
 The makefile can be used to build an example executable that can be used to
 test the precision and performance of these functions. Here is the output
 on my computer:
