@@ -3,6 +3,7 @@
 #include<ctime>
 
 #include"simd_math_prims.h"
+#include"icsilog.h"
 
 using namespace std;
 
@@ -77,15 +78,24 @@ int main() {
   for(int i = 0; i < N_samp; i++)
     vals_test[i] = d(r);
 
+  printf("Sin functions:\n--------------\n");
   compare_fun(sinapprox, sinf, -M_PI, M_PI, true, false);
   bench_fun(sinf, 100000);
   bench_fun(sinapprox, 1000000L);
+
+  printf("\nCos functions:\n--------------\n");
   compare_fun(cosapprox, cosf, -M_PI, M_PI, true, false);
   bench_fun(cosf, 100000);
   bench_fun(cosapprox, 1000000L);
+
+  printf("\nLog functions:\n--------------\n");
   compare_fun(logapprox, logf, 1e-10, 10, true, false);
+  compare_fun(icsi_log, logf, 1e-10, 10, true, false);
   bench_fun(logf, 100000);
+  bench_fun(icsi_log, 100000L);
   bench_fun(logapprox, 1000000L);
+
+  printf("\nExp functions:\n--------------\n");
   compare_fun(expapprox, expf, -10, 10, false, true);
   bench_fun(expf, 100000);
   bench_fun(expapprox, 1000000L);
