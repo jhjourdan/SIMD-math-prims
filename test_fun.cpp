@@ -80,23 +80,28 @@ int main() {
 
   printf("Sin functions:\n--------------\n");
   compare_fun(sinapprox, sinf, -M_PI, M_PI, true, false);
+  printf("\n");
   bench_fun(sinf, 100000);
   bench_fun(sinapprox, 1000000L);
 
-  printf("\nCos functions:\n--------------\n");
+  printf("\n\nCos functions:\n--------------\n");
   compare_fun(cosapprox, cosf, -M_PI, M_PI, true, false);
+  printf("\n");
   bench_fun(cosf, 100000);
   bench_fun(cosapprox, 1000000L);
 
-  printf("\nLog functions:\n--------------\n");
+  printf("\n\nLog functions:\n--------------\n");
   compare_fun(logapprox, logf, 1e-10, 10, true, false);
+  printf("\n");
   compare_fun(icsi_log, logf, 1e-10, 10, true, false);
+  printf("\n");
   bench_fun(logf, 100000);
   bench_fun(icsi_log, 100000L);
   bench_fun(logapprox, 1000000L);
 
-  printf("\nExp functions:\n--------------\n");
+  printf("\n\nExp functions:\n--------------\n");
   compare_fun(expapprox, expf, -10, 10, false, true);
+  printf("\n");
   bench_fun(expf, 100000);
   bench_fun(expapprox, 1000000L);
 
