@@ -18,6 +18,7 @@ The makefile can be used to build an example executable that can be used to
 test the precision and performance of these functions. Here is the output
 on my computer:
 
+```
 Sin functions:
 --------------
 Comparing the behavior of sinapprox against sinf, in the interval [-3.14159, 3.14159]:
@@ -68,3 +69,4 @@ Min relative difference:	-7.783748e-06
 Max relative difference:	7.444810e-06
 Benchmarking expf...    83.4M/s
 Benchmarking expapprox...    1799.6M/s
+```
