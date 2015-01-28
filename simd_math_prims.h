@@ -58,7 +58,7 @@ inline float expapprox(float val) {
                1.3534179888665676116943359375e-2f))));
 }
 
-/* Absolute error bounded by 7e-5 for normalized inputs
+/* Absolute error bounded by 3e-5 for normalized inputs
    Returns a finite number for +inf input
    Returns -inf for nan and <= 0 inputs. */
 inline float logapprox(float val) {
@@ -66,16 +66,17 @@ inline float logapprox(float val) {
   float exp, addcst, x;
   valu.f = val;
   exp = valu.i >> 23;
-  addcst = val > 0 ? -8.97714691162109375e1f : -INFINITY;
+  addcst = val > 0 ? -89.93423858f : -(float)INFINITY;
   valu.i = (valu.i & 0x7FFFFF) | 0x3F800000;
   x = valu.f;
 
+  float x2 = x*x;
+
   return
-    x * (2.8211696147918701171875f + x *
-         (-1.46993792057037353515625f + x *
-          (0.447177886962890625f + x *
-           -5.65716885030269622802734375e-2f)))
-    + (addcst + 0.69314718055995f*exp);
+    (3.3977745f * x + addcst) +
+    x2 * ((x - 2.2744832f) +
+          x2 * (0.024982445f * x - 0.24371102f)) +
+    0.69314718055995f*exp;
 }
 
 /* Correct only in [-pi, pi]

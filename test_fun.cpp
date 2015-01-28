@@ -37,17 +37,17 @@ void compare_fun_f(float (*f1)(float), float (*f2)(float), float low, float high
     if(rel_err > max_rel_err) max_rel_err = rel_err;
   }
   if(abs) {
-    printf("Bias:\t\t\t\t%le\n", sum_err/N_samp);
-    printf("Mean absolute error:\t\t%le\n", sum_abs_err/N_samp);
-    printf("Mean square error:\t\t%le\n", sqrt(sum_sq_err/N_samp));
-    printf("Min difference:\t\t\t%le\n", min_err);
-    printf("Max difference:\t\t\t%le\n", max_err);
+    printf("Bias:\t\t\t%le\n", sum_err/N_samp);
+    printf("Mean absolute error:\t%le\n", sum_abs_err/N_samp);
+    printf("RMS error:\t\t%le\n", sqrt(sum_sq_err/N_samp));
+    printf("Min difference:\t\t%le\n", min_err);
+    printf("Max difference:\t\t%le\n", max_err);
   }
 
   if(rel) {
     printf("Relative bias:\t\t\t%le\n", sum_rel_err/N_samp);
     printf("Mean relative error:\t\t%le\n", sum_abs_rel_err/N_samp);
-    printf("Mean squared relative error:\t%le\n", sqrt(sum_sq_rel_err/N_samp));
+    printf("RMS relative error:\t\t%le\n", sqrt(sum_sq_rel_err/N_samp));
     printf("Min relative difference:\t%le\n", min_rel_err);
     printf("Max relative difference:\t%le\n", max_rel_err);
   }
