@@ -68,7 +68,7 @@ inline float expapprox(float val) {
    Returns a finite number for +inf input
    Returns -inf for nan and <= 0 inputs.
    Continuous error. */
-inline float logapprox_cont(float val) {
+inline float logapprox(float val) {
   union { float f; int i; } valu;
   float exp, addcst, x;
   valu.f = val;

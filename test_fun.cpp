@@ -91,8 +91,6 @@ int main() {
   bench_fun(cosapprox, 1000000L);
 
   printf("\n\nLog functions:\n--------------\n");
-  compare_fun(logapprox_cont, logf, 1e-10, 10, true, false);
-  printf("\n");
   compare_fun(logapprox, logf, 1e-10, 10, true, false);
   printf("\n");
   compare_fun(icsi_log, logf, 1e-10, 10, true, false);
@@ -100,7 +98,6 @@ int main() {
   bench_fun(logf, 100000);
   bench_fun(icsi_log, 100000L);
   bench_fun(logapprox, 1000000L);
-  bench_fun(logapprox_cont, 1000000L);
 
   printf("\n\nExp functions:\n--------------\n");
   compare_fun(expapprox, expf, -10, 10, false, true);
