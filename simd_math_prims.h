@@ -38,7 +38,8 @@ float exp_cst1 = 2139095040.f;
 float exp_cst2 = 0.f;
 
 /* Relative error bounded by 1e-5 for normalized outputs
-   Returns invalid outputs for nan inputs */
+   Returns invalid outputs for nan inputs
+   Continuous error */
 inline float expapprox(float val) {
   union { int i; float f; } xu, xu2;
   float val2, val3, val4, b;
@@ -52,16 +53,18 @@ inline float expapprox(float val) {
   b = xu2.f;
 
   /* Generated in Sollya with:
-     > f=remez(1, 4, [1,2], exp(-(x-1)*log(2)), 1e-10);
-     > plot(exp((x-1)*log(2))/f-1, [1,2]);
-     > f;
+     > f=remez(1-x*exp(-(x-1)*log(2)),
+               [|1,(x-1)*(x-2), (x-1)*(x-2)*x, (x-1)*(x-2)*x*x|],
+               [1,2], exp(-(x-1)*log(2)));
+     > plot(exp((x-1)*log(2))/(f+x)-1, [1,2]);
+     > f+x;
   */
   return
-    xu.f * (0.509964287281036376953125f + b *
-            (0.3120158612728118896484375f + b *
-             (0.1666135489940643310546875f + b *
-              (-2.12528370320796966552734375e-3f + b *
-               1.3534179888665676116943359375e-2f))));
+    xu.f * (0.510397365625862338668154f + b *
+            (0.310670891004095530771135f + b *
+             (0.168143436463395944830000f + b *
+              (-2.88093587581985443087955e-3f + b *
+               1.3671023382430374383648148e-2f))));
 }
 
 /* Absolute error bounded by 1e-6 for normalized inputs
@@ -94,7 +97,8 @@ inline float logapprox(float val) {
 }
 
 /* Correct only in [-pi, pi]
-   Absolute error bounded by 5e-5 */
+   Absolute error bounded by 5e-5
+   Continuous error */
 inline float cosapprox(float val) {
   float val2 = val*val;
   return
@@ -106,7 +110,8 @@ inline float cosapprox(float val) {
 }
 
 /* Correct only in [-pi, pi]
-   Absolute error bounded by 6e-6 */
+   Absolute error bounded by 6e-6
+   Continuous error */
 inline float sinapprox(float val) {
   float val2 = val*val;
   return
