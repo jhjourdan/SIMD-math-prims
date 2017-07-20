@@ -28,6 +28,7 @@ SOFTWARE.
 #define SIMD_MATH_PRIMS_H
 
 #include<math.h>
+#include<stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,13 +42,13 @@ float exp_cst2 = 0.f;
    Returns invalid outputs for nan inputs
    Continuous error */
 inline float expapprox(float val) {
-  union { int i; float f; } xu, xu2;
+  union { int32_t i; float f; } xu, xu2;
   float val2, val3, val4, b;
-  int val4i;
+  int32_t val4i;
   val2 = 12102203.1615614f*val+1065353216.f;
   val3 = val2 < exp_cst1 ? val2 : exp_cst1;
   val4 = val3 > exp_cst2 ? val3 : exp_cst2;
-  val4i = (int) val4;
+  val4i = (int32_t) val4;
   xu.i = val4i & 0x7F800000;
   xu2.i = (val4i & 0x7FFFFF) | 0x3F800000;
   b = xu2.f;
@@ -72,7 +73,7 @@ inline float expapprox(float val) {
    Returns -inf for nan and <= 0 inputs.
    Continuous error. */
 inline float logapprox(float val) {
-  union { float f; int i; } valu;
+  union { float f; int32_t i; } valu;
   float exp, addcst, x;
   valu.f = val;
   exp = valu.i >> 23;
