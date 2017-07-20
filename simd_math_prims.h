@@ -83,7 +83,7 @@ inline float logapprox(float val) {
   x = valu.f;
 
 
-  /* Generated in Sollya using :
+  /* Generated in Sollya using:
     > f = remez(log(x)-(x-1)*log(2),
             [|1,(x-1)*(x-2), (x-1)*(x-2)*x, (x-1)*(x-2)*x*x,
               (x-1)*(x-2)*x*x*x|], [1,2], 1, 1e-8);
@@ -102,12 +102,18 @@ inline float logapprox(float val) {
    Continuous error */
 inline float cosapprox(float val) {
   float val2 = val*val;
+  /* Generated in Sollya using:
+     > f = remez(cos(x)-1, [|x*x, x*x*x*x, x*x*x*x*x*x, x*x*x*x*x*x*x*x|],
+                             [0.000001, pi], 1, 1e-8);
+     > plot(f-cos(x)+1, [0, pi]);
+     > f+1
+ */
   return
-    0.999959766864776611328125f + val2 *
-    (-0.4997930824756622314453125f + val2 *
-     (4.1496001183986663818359375e-2f + val2 *
-      (-1.33926304988563060760498046875e-3f + val2 *
-       1.8791708498611114919185638427734375e-5f)));
+    1.f + val2 *
+    (-0.49985158205212948f + val2 *
+     (4.151803521644389800e-2f + val2 *
+      (-1.34229470252267675e-3f + val2 *
+       1.89298648243010005378029e-5f)));
 }
 
 /* Correct only in [-pi, pi]
