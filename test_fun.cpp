@@ -62,9 +62,11 @@ void compare_fun_f(float (*f1)(float), float (*f2)(float), float low, float high
 #define bench_fun(f, cycles) {                                          \
     printf("Benchmarking " #f "...");                                   \
     clock_t begin = clock();                                            \
-    for(int i = 0; i < cycles; i++)                                     \
+    for(int i = 0; i < cycles; i++) {                                   \
       for(int j = 0; j < N_samp; j++)                                   \
         buf[j] = f(vals_test[j]);                                       \
+      __asm__(""); /* Make sure the above computation is not dropped */ \
+    }                                                                   \
     clock_t end = clock();                                              \
     double dt = double(end - begin) / CLOCKS_PER_SEC;                   \
     double throughput = cycles*N_samp/dt;                               \
