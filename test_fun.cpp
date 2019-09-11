@@ -7,6 +7,11 @@
 
 using namespace std;
 
+// On some platforms, math.h does not define M_PI
+#ifndef M_PI
+#    define M_PI 3.14159265358979323846
+#endif
+
 const int N_samp = 1<<10;
 
 float vals_test[N_samp];
