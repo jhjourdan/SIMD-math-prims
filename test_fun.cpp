@@ -124,8 +124,8 @@ int main() {
   bench_fun_f(logf, 100000);
   bench_fun_f(icsi_log, 100000L);
   bench_fun_f(logapprox, 1000000L);
-  bench_fun_f(log, 100000L);
-  bench_fun_f(logapprox_d, 1000000L);
+  bench_fun_d(log, 100000L);
+  bench_fun_d(logapprox_d, 1000000L);
 
   printf("\n\nExp functions:\n--------------\n");
   compare_fun(expapprox, expf, -10.f, 10.f, false, true);
