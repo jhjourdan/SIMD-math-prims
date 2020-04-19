@@ -103,7 +103,7 @@ inline double expapprox_d(double val) {
               2.17150255054231565039e-4))))));
 }
 
-/* Absolute error bounded by 1e-6 for normalized inputs
+/* Absolute error bounded by 1e-5 for normalized inputs
    Returns a finite number for +inf input
    Returns -inf for nan and <= 0 inputs.
    Continuous error. */
@@ -131,7 +131,7 @@ inline float logapprox(float val) {
     + (addcst + 0.6931471805f*exp);
 }
 
-/* Absolute error bounded by 2e-9 for normalized inputs
+/* Absolute error bounded by 5e-9 for normalized inputs
    Returns a finite number for +inf input
    Returns -inf for nan and <= 0 inputs.
    Continuous error.
